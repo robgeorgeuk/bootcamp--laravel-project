@@ -7,11 +7,7 @@ use Illuminate\Http\Request;
 
 class Articles extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // shows all articles
     public function index()
     {
         return view("articles/list", [
@@ -19,71 +15,26 @@ class Articles extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    // shows search result
+    public function search(Request $request)
     {
-        //
+        $query = $request->get("query");
+
+        $articles = Article::where("title", "like", "%{$query}%")
+                           ->orWhere("content", "like", "%{$query}%")
+                           ->get();
+
+        return view("articles/search", [
+            "query" => $query,
+            "articles" => $articles,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Article  $article
-     * @return \Illuminate\Http\Response
-     */
+    // shows single article
     public function show(Article $article)
     {
         return view("articles/show", [
             "article" => $article
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Article $article)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Article $article)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Article $article)
-    {
-        //
     }
 }
