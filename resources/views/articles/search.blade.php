@@ -1,9 +1,22 @@
 @extends("app")
 
 @section("content")
-    <p><strong>Search:</strong> “{{ $query }}”</p>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Search</li>
+            <li class="breadcrumb-item active" aria-current="page">
+                &ldquo;{{ $query }}&rdquo;
+            </li>
+        </ol>
+    </nav>
 
-    @include("articles/_parts/list", [
-        "articles" => $articles,
-    ])
+    @if($articles->isNotEmpty())
+        @include("articles/_parts/list", [
+            "articles" => $articles,
+        ])
+    @else
+        <p class="alert alert-warning" role="alert">
+            No results found
+        </p>
+    @endif
 @endsection
