@@ -45,6 +45,7 @@ class Articles extends Controller
         return view("articles/form", [
             "title" => "Create Article",
             "button" => "Create",
+            "article" => null,
         ]);
     }
 
