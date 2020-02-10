@@ -16,6 +16,7 @@ Route::group(["prefix" => "articles"], function () {
 
     // /{article} needs to come after /create
     Route::get('{article}', "Articles@show");
+    Route::post('{article}', "Articles@commentPost");
 });
 
 Auth::routes(['register' => false]);

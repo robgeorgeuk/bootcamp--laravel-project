@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\CommentRequest;
 
 class Articles extends Controller
 {
@@ -71,6 +73,16 @@ class Articles extends Controller
     {
         $data = $request->all();
         $article->fill($data)->save();
+
+        return redirect("/articles/{$article->id}");
+    }
+
+    // comment form
+    public function commentPost(Article $article, CommentRequest $request)
+    {
+        $data = $request->all();
+        $comment = new Comment($data);
+        $article->comments()->save($comment);
 
         return redirect("/articles/{$article->id}");
     }

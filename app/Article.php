@@ -8,6 +8,11 @@ class Article extends Model
 {
     protected $fillable = ["content", "title"];
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function relativeDate()
     {
         return $this->created_at->diffForHumans();

@@ -23,4 +23,18 @@
             {{ $article->relativeDate() }}
         </div>
     </article>
+
+    <hr />
+
+    <h3>Comments</h3>
+
+    @if($article->comments->isNotEmpty())
+        @include("articles/comments/list", [
+            "comments" => $article->comments,
+        ])
+    @else
+        <p class="alert alert-secondary">No comments found</p>
+    @endif
+
+    @include("articles/comments/form")
 @endsection
