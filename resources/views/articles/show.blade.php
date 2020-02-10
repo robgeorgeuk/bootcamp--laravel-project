@@ -6,7 +6,13 @@
 
 @section("content")
     <article class="card">
-        <h2 class="card-header">{{ $article->title }}</h2>
+        <h2 class="card-header">
+            {{ $article->title }}
+
+            @if (Auth::check())
+                <a href="/articles/{{ $article->id }}/edit" class="float-right btn btn-primary">Edit Article</a>
+            @endif
+        </h2>
 
         <div class="card-body">
 
