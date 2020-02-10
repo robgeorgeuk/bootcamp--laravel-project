@@ -1,5 +1,7 @@
 @extends("app")
 
+@section("title"){{ "Search: {$query}" }}@endsection
+
 @section("content")
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">

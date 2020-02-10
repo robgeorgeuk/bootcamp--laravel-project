@@ -1,5 +1,9 @@
 @extends("app")
 
+@section("title"){{
+    $article->title
+}}@endsection
+
 @section("content")
     <small class="float-right badge badge-info">
         {{ $article->relativeDate() }}

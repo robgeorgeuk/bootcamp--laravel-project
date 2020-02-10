@@ -1,5 +1,9 @@
 @extends("app")
 
+@section("title"){{
+    $title . ($article ? ": " . $article->title : "")
+}}@endsection
+
 @section("content")
     <h2>{{ $title }}</h2>
 
