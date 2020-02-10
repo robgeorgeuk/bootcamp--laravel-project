@@ -4,7 +4,14 @@
 </nav>
 
 @if (Auth::check())
-<div class="mt-4 mb-4 clearfix">
-    <a href="/articles/create" class="float-right btn btn-success">Create Article</a>
+<form class="mt-4 mb-4 clearfix text-right" method="post" action="/logout">
+    <a href="/articles/create" class="btn btn-success">Create Article</a>
+
+    @csrf
+    <button class="btn btn-danger">Logout</button>
+</form>
+@else
+<div class="mt-4 mb-4 clearfix text-right">
+    <a href="/login" class="btn btn-primary">Login</a>
 </div>
 @endif
