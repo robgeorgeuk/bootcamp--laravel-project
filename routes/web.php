@@ -10,3 +10,5 @@ Route::group(["prefix" => "articles"], function () {
     Route::get('{article}/edit', "Articles@edit");
     Route::post('{article}/edit', "Articles@editPost");
 });
+
+Auth::routes(['register' => false]);
