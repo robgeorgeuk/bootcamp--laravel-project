@@ -5,13 +5,16 @@
 }}@endsection
 
 @section("content")
-    <small class="float-right badge badge-info">
-        {{ $article->relativeDate() }}
-    </small>
+    <article class="card">
+        <h2 class="card-header">{{ $article->title }}</h2>
 
-    <h2 class="mb-1">{{ $article->title }}</h2>
+        <div class="card-body">
 
-    <article class="mt-4">
-        <p class="mb-1">{{ $article->content }}</p>
+            <p class="card-text">{{ $article->content }}</p>
+        </div>
+
+        <div class="card-footer text-muted text-right">
+            {{ $article->relativeDate() }}
+        </div>
     </article>
 @endsection
