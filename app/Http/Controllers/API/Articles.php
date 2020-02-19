@@ -3,32 +3,35 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\API\ArticleRequest;
+use App\Http\Resources\API\ArticleResource;
+use App\Http\Resources\API\ArticleListResource;
 use App\Article;
 
 class Articles extends Controller
 {
     public function index()
     {
-        return Article::all();
+        return ArticleListResource::collection(Article::all());
     }
 
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         $data = $request->all();
-        return Article::create($data);
+        $article = Article::create($data);
+        return new ArticleResource($article);
     }
 
     public function show(Article $article)
     {
-        return $article;
+        return new ArticleResource($article);
     }
 
-    public function update(Request $request, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
         $data = $request->all();
         $article->fill($data)->save();
-        return $article;
+        return new ArticleResource($article);
     }
 
     public function destroy(Article $article)
