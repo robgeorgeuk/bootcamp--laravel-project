@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Article extends Model
 {
@@ -16,5 +17,11 @@ class Article extends Model
     public function relativeDate()
     {
         return $this->created_at->diffForHumans();
+    }
+
+    public function truncate()
+    {
+        // use the Laravel Str::limit method
+        return Str::limit($this->content, 20);
     }
 }
