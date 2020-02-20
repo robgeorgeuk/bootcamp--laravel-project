@@ -2,11 +2,15 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+
+use Tests\TestCase;
 use App\Article;
 
 class ArticleTest extends TestCase
 {
+    use DatabaseMigrations;
+
     private $article;
 
     public function __construct()
@@ -17,7 +21,6 @@ class ArticleTest extends TestCase
             "title" => "Hello",
             "content" => "Blah blah blah",
         ]);
-
     }
 
     public function testTitle()
@@ -35,5 +38,15 @@ class ArticleTest extends TestCase
         ]);
 
         $this->assertSame("Blah blah blah blah...", $article->truncate());
+    }
+
+    public function testDatabase()
+    {
+        Article::create([
+            "title" => "Hello",
+            "content" => "Blah blah blah",
+        ]);
+
+        $this->assertSame("Hello", Article::all()->first()->title);
     }
 }
