@@ -18,7 +18,7 @@ class Articles extends Controller
     public function store(ArticleRequest $request)
     {
         $data = $request->all();
-        $article = Article::create($data);
+        $article = Article::create($data)->setTags($request->get("tags"));
         return new ArticleResource($article);
     }
 
@@ -31,6 +31,7 @@ class Articles extends Controller
     {
         $data = $request->all();
         $article->fill($data)->save();
+        $article->setTags($request->get("tags"));
         return new ArticleResource($article);
     }
 

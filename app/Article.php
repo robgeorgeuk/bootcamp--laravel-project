@@ -29,4 +29,16 @@ class Article extends Model
         // use the Laravel Str::limit method
         return Str::limit($this->content, 20);
     }
+
+    public function setTags(array $strings) : Article
+    {
+        $tags = Tag::fromStrings($strings);
+
+        // we're on an article instance, so use $this
+        // pass in collection of IDs
+        $this->tags()->sync($tags->pluck("id"));
+
+        // return $this in case we want to chain
+        return $this;
+    }
 }

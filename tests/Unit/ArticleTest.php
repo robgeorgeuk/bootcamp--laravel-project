@@ -49,4 +49,27 @@ class ArticleTest extends TestCase
 
         $this->assertSame("Hello", Article::all()->first()->title);
     }
+
+    public function testSetTags()
+    {
+        Article::create([
+            "title" => "Hello",
+            "content" => "Blah blah blah",
+        ]);
+
+        // get the article
+        $article = Article::all()->first();
+
+        // add some tags
+        $article->setTags(["blah", "flah", "blah"]);
+
+        // check the article from the DB has the tags
+        $fromDB = Article::all()->first();
+        $this->assertSame(2, $fromDB->tags->count());
+
+        // check tags are removed
+        $fromDB->setTags(["blah"]);
+        $fromDB = Article::all()->first();
+        $this->assertSame(1, $fromDB->tags->count());
+    }
 }
