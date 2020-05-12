@@ -1,5 +1,5 @@
 set :application, "my-amazing-laravel-app"
-set :repo_url, "git@github.com:develop-me/bootcamp--laravel-project"
+set :repo_url, "git@github.com:robgeorgeuk/bootcamp--laravel-project"
 
 # Default value for :linked_files is []
 set :linked_files, fetch(:linked_files, []).push(".env")
