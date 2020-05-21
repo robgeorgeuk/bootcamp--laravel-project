@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@yield("title") » My Amazing Blog</title>
+        <title>@yield("title") » My Amazing AWS Hosted Blog</title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
